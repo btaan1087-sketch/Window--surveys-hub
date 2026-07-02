@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>window · استبيان الحملات الإعلانية</title>
+<style>
+  :root{
+    --dark:#0D5C4A;
+    --dark2:#0a4a3c;
+    --teal:#5ec9b0;
+    --bg:#f4f7f6;
+    --card:#ffffff;
+    --text:#16221f;
+    --muted:#6b7a76;
+    --border:#e3ece9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Tahoma','Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    padding:0 0 60px;
+    min-height:100vh;
+  }
+  .header{
+    background:linear-gradient(135deg,var(--dark),var(--dark2));
+    color:#fff;
+    padding:28px 20px 40px;
+    text-align:center;
+    border-radius:0 0 28px 28px;
+    position:relative;
+  }
+  .logo{
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:1px;
+  }
+  .tagline{
+    margin-top:6px;
+    font-size:14px;
+    color:var(--teal);
+    font-weight:600;
+  }
+  .badge{
+    display:inline-block;
+    margin-top:14px;
+    background:rgba(255,255,255,0.12);
+    padding:6px 16px;
+    border-radius:999px;
+    font-size:13px;
+  }
+  .container{
+    max-width:520px;
+    margin:-24px auto 0;
+    padding:0 16px;
+  }
+  .hero{
+    background:var(--card);
+    border-radius:20px;
+    padding:22px 20px;
+    box-shadow:0 6px 24px rgba(13,92,74,0.08);
+    text-align:center;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:19px;
+    color:var(--dark);
+    margin-bottom:8px;
+  }
+  .hero p{
+    font-size:13.5px;
+    color:var(--muted);
+    line-height:1.7;
+  }
+  .card{
+    background:var(--card);
+    border-radius:20px;
+    padding:22px 20px;
+    box-shadow:0 6px 24px rgba(13,92,74,0.06);
+    margin-bottom:16px;
+  }
+  .card-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .icon-circle{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(13,92,74,0.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    flex-shrink:0;
+  }
+  .card-head h2{
+    font-size:16px;
+    color:var(--dark);
+  }
+  label{
+    display:block;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text);
+    margin-bottom:6px;
+  }
+  .req{color:#d9534f;}
+  .field{margin-bottom:16px;}
+  input[type=text], input[type=email], input[type=tel], textarea, select{
+    width:100%;
+    padding:12px 14px;
+    border:1.5px solid var(--border);
+    border-radius:12px;
+    font-size:14px;
+    font-family:inherit;
+    background:#fafcfb;
+    color:var(--text);
+    transition:.2s;
+  }
+  input:focus, textarea:focus, select:focus{
+    outline:none;
+    border-color:var(--teal);
+    background:#fff;
+  }
+  textarea{resize:vertical; min-height:80px;}
+  .hint{
+    font-size:11.5px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+  .chip-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .chip{
+    padding:9px 14px;
+    border:1.5px solid var(--border);
+    border-radius:999px;
+    font-size:13px;
+    cursor:pointer;
+    background:#fafcfb;
+    color:var(--text);
+    user-select:none;
+    transition:.15s;
+  }
+  .chip.active{
+    background:var(--dark);
+    border-color:var(--dark);
+    color:#fff;
+  }
+  .radio-row{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .radio-option{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 14px;
+    border:1.5px solid var(--border);
+    border-radius:12px;
+    cursor:pointer;
+    font-size:13.5px;
+    background:#fafcfb;
+    transition:.15s;
+  }
+  .radio-option.active{
+    border-color:var(--teal);
+    background:rgba(94,201,176,0.08);
+  }
+  .radio-option input{width:auto;}
+  .submit-btn{
+    width:100%;
+    background:linear-gradient(135deg,var(--dark),var(--dark2));
+    color:#fff;
+    border:none;
+    padding:16px;
+    border-radius:14px;
+    font-size:15.5px;
+    font-weight:700;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    box-shadow:0 8px 20px rgba(13,92,74,0.25);
+    transition:.2s;
+  }
+  .submit-btn:active{transform:scale(0.98);}
+  .submit-btn:disabled{opacity:0.6;}
+  .footer-note{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--muted);
+    margin-top:18px;
+  }
+  .success-screen{
+    display:none;
+    text-align:center;
+    padding:60px 24px;
+  }
+  .success-icon{
+    width:70px;
+    height:70px;
+    background:var(--teal);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    color:#fff;
+    margin:0 auto 20px;
+  }
+  .success-screen h1{
+    color:var(--dark);
+    font-size:20px;
+    margin-bottom:10px;
+  }
+  .success-screen p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.8;
+    margin-bottom:24px;
+  }
+  .new-btn{
+    background:transparent;
+    border:1.5px solid var(--dark);
+    color:var(--dark);
+    padding:12px 24px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  #formScreen.hidden, .success-screen.show{display:block;}
+  #formScreen.gone{display:none;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">window</div>
+  <div class="tagline">Window Marketing Services</div>
+  <div class="badge">📢 استبيان الحملات الإعلانية</div>
+</div>
+
+<div class="container">
+
+  <div id="formScreen">
+    <div class="hero">
+      <h1>خلّنا نفهم حملتك أكثر</h1>
+      <p>عبّي البيانات التالية بدقة عشان نقدر نصمم استراتيجية إعلانية تحقق أهدافك بأفضل شكل</p>
+    </div>
+
+    <form id="campaignForm">
+
+      <div class="card">
+        <div class="card-head">
+          <div class="icon-circle">🏢</div>
+          <h2>بيانات العميل</h2>
+        </div>
+        <div class="field">
+          <label>اسم النشاط / العلامة التجارية <span class="req">*</span></label>
+          <input type="text" name="brandName" required placeholder="مثال: مطعم الفتحة">
+        </div>
+        <div class="field">
+          <label>اسم المسؤول <span class="req">*</span></label>
+          <input type="text" name="contactName" required placeholder="الاسم الكامل">
+        </div>
+        <div class="field">
+          <label>رقم التواصل (واتساب) <span class="req">*</span></label>
+          <input type="tel" name="phone" required placeholder="05xxxxxxxx">
+        </div>
+        <div class="field">
+          <label>مجال النشاط</label>
+          <input type="text" name="industry" placeholder="مثال: مطاعم، أزياء، عقار...">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="icon-circle">🎯</div>
+          <h2>هدف الحملة</h2>
+        </div>
+        <div class="field">
+          <label>الهدف الرئيسي من الحملة <span class="req">*</span></label>
+          <div class="chip-group" data-name="goal">
+            <div class="chip">زيادة المبيعات</div>
+            <div class="chip">الوعي بالعلامة</div>
+            <div class="chip">زيادة المتابعين</div>
+            <div class="chip">تحفيز الحجوزات</div>
+            <div class="chip">إطلاق منتج جديد</div>
+            <div class="chip">أخرى</div>
+          </div>
+          <input type="hidden" name="goal" id="goal">
+        </div>
+        <div class="field">
+          <label>وش الرسالة اللي تبي توصلها؟</label>
+          <textarea name="message" placeholder="مثال: نبي نوصل إحساس الفخامة والجودة في منتجاتنا"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="icon-circle">👥</div>
+          <h2>الجمهور المستهدف</h2>
+        </div>
+        <div class="field">
+          <label>الفئة العمرية</label>
+          <div class="chip-group" data-name="ageGroup">
+            <div class="chip">18-24</div>
+            <div class="chip">25-34</div>
+            <div class="chip">35-44</div>
+            <div class="chip">45+</div>
+            <div class="chip">جميع الفئات</div>
+          </div>
+          <input type="hidden" name="ageGroup" id="ageGroup">
+        </div>
+        <div class="field">
+          <label>الجنس المستهدف</label>
+          <div class="chip-group" data-name="gender">
+            <div class="chip">رجال</div>
+            <div class="chip">نساء</div>
+            <div class="chip">الجميع</div>
+          </div>
+          <input type="hidden" name="gender" id="gender">
+        </div>
+        <div class="field">
+          <label>المنطقة الجغرافية المستهدفة</label>
+          <input type="text" name="location" placeholder="مثال: الرياض، جدة، كل المملكة...">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="icon-circle">📱</div>
+          <h2>المنصات والميزانية</h2>
+        </div>
+        <div class="field">
+          <label>المنصات المطلوب الإعلان فيها</label>
+          <div class="chip-group" data-name="platforms" data-multi="true">
+            <div class="chip">Instagram</div>
+            <div class="chip">TikTok</div>
+            <div class="chip">Snapchat</div>
+            <div class="chip">X (تويتر)</div>
+            <div class="chip">Google Ads</div>
+            <div class="chip">غير محدد</div>
+          </div>
+          <input type="hidden" name="platforms" id="platforms">
+        </div>
+        <div class="field">
+          <label>الميزانية الشهرية التقريبية</label>
+          <div class="radio-row" data-name="budget">
+            <label class="radio-option"><input type="radio" name="budget" value="أقل من 5,000 ر.س"> أقل من 5,000 ر.س</label>
+            <label class="radio-option"><input type="radio" name="budget" value="5,000 - 15,000 ر.س"> 5,000 - 15,000 ر.س</label>
+            <label class="radio-option"><input type="radio" name="budget" value="15,000 - 30,000 ر.س"> 15,000 - 30,000 ر.س</label>
+            <label class="radio-option"><input type="radio" name="budget" value="أكثر من 30,000 ر.س"> أكثر من 30,000 ر.س</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>مدة الحملة المتوقعة</label>
+          <input type="text" name="duration" placeholder="مثال: شهر، 3 أشهر، مستمرة...">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="icon-circle">💡</div>
+          <h2>مراجع وملاحظات</h2>
+        </div>
+        <div class="field">
+          <label>حسابات أو حملات تعجبك (كمرجع)</label>
+          <textarea name="references" placeholder="روابط أو أسماء حسابات..."></textarea>
+        </div>
+        <div class="field">
+          <label>ملاحظات إضافية (اختياري)</label>
+          <textarea name="notes" placeholder="أي تفاصيل تحب تضيفها"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">إرسال الاستبيان ←</button>
+      <div class="footer-note">window marketing services · 2026</div>
+    </form>
+  </div>
+
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <h1>تم إرسال الاستبيان!</h1>
+    <p>شكراً لك، بيانات حملتك وصلتنا وبيتواصل معك فريقنا قريباً لمناقشة التفاصيل</p>
+    <button class="new-btn" onclick="resetForm()">+ تعبئة استبيان جديد</button>
+  </div>
+
+</div>
+
+<script>
+  // Chip selection logic
+  document.querySelectorAll('.chip-group').forEach(group=>{
+    const isMulti = group.dataset.multi === 'true';
+    const name = group.dataset.name;
+    const hiddenInput = document.getElementById(name);
+    let selected = [];
+
+    group.querySelectorAll('.chip').forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        if(isMulti){
+          chip.classList.toggle('active');
+          const val = chip.textContent;
+          if(selected.includes(val)){
+            selected = selected.filter(v=>v!==val);
+          } else {
+            selected.push(val);
+          }
+          hiddenInput.value = selected.join('، ');
+        } else {
+          group.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+          chip.classList.add('active');
+          hiddenInput.value = chip.textContent;
+        }
+      });
+    });
+  });
+
+  // Radio option highlight
+  document.querySelectorAll('.radio-row').forEach(row=>{
+    row.querySelectorAll('.radio-option').forEach(opt=>{
+      opt.addEventListener('click', ()=>{
+        row.querySelectorAll('.radio-option').forEach(o=>o.classList.remove('active'));
+        opt.classList.add('active');
+      });
+    });
+  });
+
+  const SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+
+  document.getElementById('campaignForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = "جارٍ الإرسال...";
+
+    const formData = new FormData(e.target);
+    const data = {};
+    formData.forEach((value,key)=>{ data[key] = value; });
+    data.timestamp = new Date().toLocaleString('ar-SA');
+    data.type = "استبيان حملة إعلانية";
+
+    fetch(SCRIPT_URL, {
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    }).then(()=>{
+      document.getElementById('formScreen').classList.add('gone');
+      document.getElementById('successScreen').classList.add('show');
+    }).catch(()=>{
+      document.getElementById('formScreen').classList.add('gone');
+      document.getElementById('successScreen').classList.add('show');
+    });
+  });
+
+  function resetForm(){
+    document.getElementById('campaignForm').reset();
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    document.querySelectorAll('.radio-option').forEach(o=>o.classList.remove('active'));
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = "إرسال الاستبيان ←";
+    document.getElementById('successScreen').classList.remove('show');
+    document.getElementById('formScreen').classList.remove('gone');
+  }
+</script>
+
+</body>
+</html>
