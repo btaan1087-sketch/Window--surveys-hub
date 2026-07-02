@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>window · الاستبيانات</title>
+<style>
+  :root{
+    --dark:#0D5C4A;
+    --dark2:#0a4a3c;
+    --teal:#5ec9b0;
+    --bg:#f4f7f6;
+    --card:#ffffff;
+    --text:#16221f;
+    --muted:#6b7a76;
+    --border:#e3ece9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Tahoma','Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    padding:0 0 60px;
+  }
+  .header{
+    background:linear-gradient(135deg,var(--dark),var(--dark2));
+    color:#fff;
+    padding:36px 20px 50px;
+    text-align:center;
+    border-radius:0 0 28px 28px;
+  }
+  .logo{
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:1px;
+  }
+  .tagline{
+    margin-top:6px;
+    font-size:14px;
+    color:var(--teal);
+    font-weight:600;
+  }
+  .container{
+    max-width:520px;
+    margin:-28px auto 0;
+    padding:0 16px;
+  }
+  .hero{
+    background:var(--card);
+    border-radius:20px;
+    padding:24px 20px;
+    box-shadow:0 6px 24px rgba(13,92,74,0.08);
+    text-align:center;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:19px;
+    color:var(--dark);
+    margin-bottom:8px;
+  }
+  .hero p{
+    font-size:13.5px;
+    color:var(--muted);
+    line-height:1.7;
+  }
+  .option-card{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    background:var(--card);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 6px 24px rgba(13,92,74,0.06);
+    margin-bottom:16px;
+    text-decoration:none;
+    color:var(--text);
+    transition:.2s;
+    border:1.5px solid transparent;
+  }
+  .option-card:active{
+    transform:scale(0.98);
+    border-color:var(--teal);
+  }
+  .option-icon{
+    width:54px;
+    height:54px;
+    border-radius:16px;
+    background:rgba(13,92,74,0.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+    flex-shrink:0;
+  }
+  .option-text h2{
+    font-size:16px;
+    color:var(--dark);
+    margin-bottom:4px;
+  }
+  .option-text p{
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+  .option-arrow{
+    margin-right:auto;
+    font-size:18px;
+    color:var(--teal);
+  }
+  .footer-note{
+    text-align:center;
+    font-size:11.5px;
+    color:var(--muted);
+    margin-top:24px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">window</div>
+  <div class="tagline">Window Marketing Services</div>
+</div>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>مرحباً بك 👋</h1>
+    <p>اختر الاستبيان المناسب لاحتياجك، وبنتواصل معك بأقرب وقت لمناقشة التفاصيل</p>
+  </div>
+
+  <a href="campaigns.html" class="option-card">
+    <div class="option-icon">📢</div>
+    <div class="option-text">
+      <h2>استبيان الحملات الإعلانية</h2>
+      <p>لو تبي تطلق حملة إعلانية أو تسويقية لنشاطك</p>
+    </div>
+    <div class="option-arrow">←</div>
+  </a>
+
+  <a href="branding.html" class="option-card">
+    <div class="option-icon">🎨</div>
+    <div class="option-text">
+      <h2>استبيان الهوية البصرية</h2>
+      <p>لو تبي تبني أو تطوّر هوية علامتك التجارية</p>
+    </div>
+    <div class="option-arrow">←</div>
+  </a>
+
+  <div class="footer-note">window marketing services · 2026</div>
+
+</div>
+
+</body>
+</html>
